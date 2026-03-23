@@ -81,9 +81,9 @@ On Windows:
 ## 📊 Example Output
 
     === Building order book for AAPL ===
-
+    
     Initial book:
-
+    
       ---- ASKS ----
         1060  |  300
         1055  |  150
@@ -94,13 +94,52 @@ On Windows:
         1035  |  200
         1030  |  250
       --------------
-
+    
     === BUY 400 @ 1055 (crosses spread) ===
       TRADE  bid#9 x ask#1  price=1050  qty=100
       TRADE  bid#9 x ask#2  price=1050  qty=200
       TRADE  bid#9 x ask#3  price=1055  qty=100
-
-------------------------------------------------------------------------
+    
+    After aggressive buy:
+    
+      ---- ASKS ----
+        1060  |  300
+        1055  |  50
+      --------------
+      ---- BIDS ----
+        1040  |  250
+        1035  |  200
+        1030  |  250
+      --------------
+    
+    === Cancel order #7 (BID 200 @ 1035) ===
+      Cancel succeeded
+    
+    After cancel:
+    
+      ---- ASKS ----
+        1060  |  300
+        1055  |  50
+      --------------
+      ---- BIDS ----
+        1040  |  250
+        1030  |  250
+      --------------
+    
+    === SELL 120 @ 1040 (hits top bid) ===
+      TRADE  bid#5 x ask#10  price=1040  qty=100
+      TRADE  bid#6 x ask#10  price=1040  qty=20
+    
+    Final book:
+    
+      ---- ASKS ----
+        1060  |  300
+        1055  |  50
+      --------------
+      ---- BIDS ----
+        1040  |  130
+        1030  |  250
+      --------------
 
 ## 🔧 Key Components
 
@@ -134,32 +173,26 @@ fast lookup
 
 ## 🧪 Example Workflow
 
-1.  Build initial book\
-2.  Submit aggressive order (cross spread)\
-3.  Observe trades\
-4.  Cancel an order\
-5.  Submit another order\
+1.  Build initial book
+2.  Submit aggressive order (cross spread)
+3.  Observe trades
+4.  Cancel an order
+5.  Submit another order
 6.  View final book state
 
 ------------------------------------------------------------------------
 
 ## 💡 Future Improvements
 
--   Market orders\
--   Stop orders\
--   Persistence (disk storage)\
--   Multithreading / concurrency\
--   Latency optimizations\
--   FIX protocol support\
+-   Market orders
+-   Stop orders
+-   Persistence (disk storage)
+-   Multithreading / concurrency
+-   Latency optimizations
 -   Unit & stress testing
 
 ------------------------------------------------------------------------
 
-## 📜 License
-
-This project is open-source and available under the MIT License.
-
-------------------------------------------------------------------------
 
 ## 🙌 Acknowledgements
 
